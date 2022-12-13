@@ -31,7 +31,7 @@ import { selectReligionList } from "@data/main_info/religion";
 import { motion } from "framer-motion";
 import detailRegionsByCode from "@data/region_info/index";
 import useClient from "@store/useClient";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ManAppearanceModal, {
   ManFashionModal,
   ManPersonalityModal,
@@ -60,7 +60,7 @@ const UserInfoPage = () => {
   const client = useClient();
   const navigate = useNavigate();
 
-  // 메인 프로파일 데이터
+  // mainInfo Data
   const [mainInfo, setMainInfo] = useState<MainInfoInterface>({
     gender: "",
     birth: "",
@@ -84,14 +84,14 @@ const UserInfoPage = () => {
     nickname: "",
     hobby: "",
   });
-  // 단계별 진행
+  // stepIndex state
   const [stepIndex, setStepIndex] = useState<number>(0);
 
-  // 지역상세 상태변경
+  // detailRegion state
   const [detailRegionOptions, setDetailRegionOptions] = useState<JSX.Element[]>(
     []
   );
-  // 유저 외모, 성격, 패션스타일 상태변경
+  // appearance, personality, fashion state
   const [manAppearance, setManAppearance] = useState<string[]>([]);
   const [manPersonality, setManPersonality] = useState<string[]>([]);
   const [manFashion, setManFashion] = useState<string[]>([]);
@@ -99,8 +99,7 @@ const UserInfoPage = () => {
   const [womanPersonality, setWomanPersonality] = useState<string[]>([]);
   const [womanFashion, setWomanFashion] = useState<string[]>([]);
 
-  //// 모달창 onChange 상태관리 집합 ////
-
+  // modal State
   const onManAppearChecked = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = evt.target;
     checked && setManAppearance([...manAppearance, value]);
@@ -134,7 +133,7 @@ const UserInfoPage = () => {
     !checked && setWomanFashion(womanFashion.filter((el) => el !== value));
   };
 
-  // 메인정보 선택에 따라 달라지는 지역상세 컬럼
+  // changed to mainRegion
   const mainInfoChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     const { value, name } = evt.target;
 
@@ -164,7 +163,7 @@ const UserInfoPage = () => {
         res.data.isCompleted && navigate(`${USER_IMAGE}`);
       });
 
-    // 서버로 가는 데이터 확인
+    // transport for server
     console.log("보내지는 데이터 :", {
       ...mainInfo,
       email: userEmail,
@@ -177,7 +176,7 @@ const UserInfoPage = () => {
     });
   }
 
-  // 체중, 키
+  // weight and height
   const weightRange = [...Array(120).keys()];
   const heightRange = [...Array(60).keys()];
 
@@ -229,7 +228,7 @@ const UserInfoPage = () => {
 
     setDetailRegionOptions(componentList);
   }, [mainInfo.region]);
-
+  // Change Detail Region List Components
   useLayoutEffect(() => {
     if (!mainInfo.detailRegion) return;
 
@@ -245,7 +244,7 @@ const UserInfoPage = () => {
     setDetailRegionOptions(componentList);
   }, [mainInfo.detailRegion]);
 
-  // 모달 제어창
+  // modal commend
   const [isAppearanceOpen, setAppearanceOpen] = useState<boolean>(false);
   const [isPersonalityOpen, setPersonalityOpen] = useState<boolean>(false);
   const [isFashionOpen, setFashionOpen] = useState<boolean>(false);
@@ -255,18 +254,19 @@ const UserInfoPage = () => {
     useState<boolean>(false);
   const [isWomanFashionOpen, setWomanFashionOpen] = useState<boolean>(false);
 
-  // 배열이 비어있는지 유효성을 체크하는 함수
+  // check to EmptyList
   const CheckVoidList = (arr: string[]) => {
     if (Array.isArray(arr) && arr.length === 0) {
       return true;
     }
   };
 
-  // 유저의 성별에 따라 성격 설문 구분
+  // classifier to user gender
   const [check, setCheck] = useState<boolean>(false);
   const man = mainInfo.gender === "m";
   const woman = mainInfo.gender === "f";
 
+  //check the nickname
   const doubleCheck = () => {
     axios
       .post(`${URL}${INPUT}/doubleCheck`, { nickname: mainInfo.nickname })

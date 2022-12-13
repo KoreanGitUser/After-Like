@@ -1,5 +1,3 @@
-import React from "react";
-
 interface AgeInterface {
   value: string;
   className?: string;

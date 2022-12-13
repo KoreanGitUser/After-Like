@@ -21,5 +21,4 @@ export const radioRegionList: RegionSelectType[] = [
   { regionInfoName: "해외", value: "q" },
 ];
 
-// 내용을 한 단계 depth 동결 시키는 것 -> 불변성 조금 보장 -> value 바뀔 수 있음.
 Object.freeze(radioRegionList);

@@ -1,10 +1,4 @@
-import { RadioType, SelectType } from "@models/CPType";
-
-export const radioSmokeList: RadioType[] = [
-  { labelName: "비흡연", htmlFor: "non-smoking", value: "a" },
-  { labelName: "금연", htmlFor: "stop-smoking", value: "b" },
-  { labelName: "흡연", htmlFor: "smoking", value: "c" },
-];
+import { SelectType } from "@models/CPType";
 
 export const selectSmokeList: SelectType[] = [
   { optionName: "비흡연", value: "a" },
@@ -12,5 +6,4 @@ export const selectSmokeList: SelectType[] = [
   { optionName: "흡연", value: "c" },
 ];
 
-Object.freeze(radioSmokeList);
 Object.freeze(selectSmokeList);
