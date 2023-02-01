@@ -50,9 +50,9 @@ module.exports = {
         "danger-active": "#f80c35",
         "danger-contra": "#ffffff",
         // LINK
-        link: "transparent",
-        "link-active": "transparent",
-        "link-contra": "#39C0ED",
+        link: "#39C0ED",
+        "link-active": "#39C0ED",
+        "link-contra": "#ffffff",
         // LIGHT
         light: "#FBFBFB",
         "light-active": "#e6e6e6",
