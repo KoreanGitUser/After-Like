@@ -53,6 +53,7 @@ import ModalH2, {
 } from "@styles/modal/ModalStyle";
 import { selectHealthList } from "@data/main_info/health";
 import { selectHobbyList } from "@data/main_info/hobby";
+import { UserInfoSubmitBtn } from "@styles/indexStyle/indexBtn";
 
 const { INPUT, URL, USER_IMAGE } = PATH;
 
@@ -1137,12 +1138,7 @@ const UserInfoPage = () => {
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
         >
-          <button
-            type="submit"
-            className="bg-blue-600 active:bg-blue-400 text-white w-32 py-0.5 active:scale-90 duration-100 text-lg rounded-md shadow-md"
-          >
-            제출
-          </button>
+          <UserInfoSubmitBtn>제출</UserInfoSubmitBtn>
         </motion.div>
       )}
     </UserInfoForm>
