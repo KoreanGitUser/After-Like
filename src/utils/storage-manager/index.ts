@@ -10,6 +10,7 @@ const storageManager = {
     const stickyList = Object.values(STICKY) as string[];
     const allKeysOnStorage = Object.keys(localStorage);
 
+    // 스티키의 여집합
     const unstickyKeys = allKeysOnStorage.filter(
       (keyName) => !stickyList.includes(keyName)
     );
