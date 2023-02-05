@@ -181,9 +181,11 @@ const UserInfoPage = () => {
   const weightRange = [...Array(120).keys()];
   const heightRange = [...Array(60).keys()];
 
+  const ableSubmit = () => mainInfo.hobby;
+
   // Increase Step Index
   useLayoutEffect(() => {
-    if (mainInfo.hobby && mainInfo.hobby) {
+    if (mainInfo.hobby) {
       setStepIndex(9);
     } else if (mainInfo.asset && mainInfo.vehicle && mainInfo.salary) {
       setStepIndex(8);
@@ -1133,6 +1135,7 @@ const UserInfoPage = () => {
       {/* 제춢버튼  */}
       {stepIndex >= 9 && (
         <motion.div
+          // disabled={ableSubmit}
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
