@@ -15,7 +15,7 @@ const PATH = {
   USER: "/user-setting",
   MODIFY: "/user-setting/user-information-modify",
   LIKE_YOU: "/user-setting/likeYou",
-};
+} as const;
 
 Object.freeze(PATH);
 
